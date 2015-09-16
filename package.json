@@ -1,0 +1,20 @@
+{
+  "name": "robin",
+  "version": "0.0.1",
+  "description": "node4.0 react",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "reflux"
+  ],
+  "author": "awwwesssooooome",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
