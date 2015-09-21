@@ -4,7 +4,8 @@
   "description": "node4.0 react",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon --exec app.js"
   },
   "keywords": [
     "node",
@@ -15,6 +16,10 @@
   "author": "awwwesssooooome",
   "license": "MIT",
   "dependencies": {
+    "babel": "^5.8.21",
     "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.6.1"
   }
 }
