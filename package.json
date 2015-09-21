@@ -17,7 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.21",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
     "nodemon": "^1.6.1"
