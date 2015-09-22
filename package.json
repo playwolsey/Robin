@@ -21,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.21",
+    "compression": "^1.5.2",
     "express": "^4.13.3",
     "favicon": "0.0.2",
     "serve-favicon": "^2.3.0",
