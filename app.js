@@ -3,7 +3,7 @@
 /**
  * Module dependencies
  */
-//import express from 'express';
+//import express from 'express'; // node4.1.0 not support es6 module
 let express = require('express');
 let app = express();
 let http = require('http').Server(app);
