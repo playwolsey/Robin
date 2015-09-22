@@ -11,6 +11,7 @@
  */
 let express = require('express');
 let path = require('path');
+let favicon = require('serve-favicon');
 let swig = require('swig');
 
 
@@ -18,8 +19,11 @@ let swig = require('swig');
  * Expose
  */
 module.exports = (app) => {
+    // set favicon
+    app.use(favicon(`${__dirname}/../app/public/favicon.ico`));
+
     // Static files middleware
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, '../app/public')));
     
 
     // set views path, template engine and default layout
