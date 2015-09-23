@@ -10,7 +10,9 @@
  * Module dependencies
  */
 let index = require('../app/controllers/index');
+let accounts = require('../app/controllers/accounts');
 
 module.exports = (app) => {
     app.get('/', index.index);
+    app.get('/signup', accounts.signup);
 };
