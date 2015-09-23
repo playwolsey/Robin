@@ -14,7 +14,7 @@ require('./config/express')(app);
 app.set('port', process.env.PORT || 1999);
 
 let server = http.listen(app.get('port'), () => {
-    console.log(`Chopper server is listening on port ${server.address().port}`);
+    console.log(`Robin server is listening on port ${server.address().port}`);
 });
 
 //export default app;
