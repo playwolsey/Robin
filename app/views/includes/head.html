@@ -3,7 +3,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>{{ title }} | {{ pkg.name }}</title>
-    <meta name="keywords" content="{{ pkg.keywords.join(',') }}">
+    <meta name="author" content="{{ pkg.author }}" />
+    <meta name="keywords" content="{{ `${pkg.keywords}` }}">
     <meta name="description" content="{{ pkg.description }}">
 
     {% block head %}
