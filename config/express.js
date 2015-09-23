@@ -11,9 +11,13 @@
  */
 let express = require('express');
 let path = require('path');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
 let favicon = require('serve-favicon');
 let swig = require('swig');
 let compression = require('compression');
+
+let pkg = require('../package.json');
 
 
 /**
@@ -36,4 +40,19 @@ module.exports = (app) => {
     app.engine('html', swig.renderFile);
     app.set('views', path.join(__dirname, '../app/views'));
     app.set('view engine', 'html');
+
+    // Expose package.json to views
+    app.use((req, res, next) => {
+        res.locals.pkg = pkg;
+        res.locals.env = process.env.NODE_ENV || 'development';
+        next();
+    });
+
+    // bodyParser should be above methodOverride
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    // CookieParser should be above session
+    app.use(cookieParser());
+    //app.use(cookieSession({ secret: 'secret' }));
 };
