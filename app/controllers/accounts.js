@@ -8,15 +8,13 @@
 
 require('node-jsx').install();
 
-let React = require('react');
-let Signup = require('../components/Signup.react');
+let React = require('react/addons');
+let Signup = React.createFactory(require('../components/Signup.react'));
 
 exports.signup = (req, res) => {
-    let markup = React.renderComponentToString(
-        Signup()
-    );
+    let markup = React.renderToString(Signup({}));
 
-    res.render('404', {
+    res.render('accounts/signup', {
         title: 'signup',
         markup: markup
     });
