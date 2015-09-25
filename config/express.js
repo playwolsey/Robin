@@ -35,7 +35,6 @@ module.exports = (app) => {
     // Static files middleware
     app.use(express.static(path.join(__dirname, '../app/public')));
 
-
     // Set views path, template engine and default layout
     app.engine('html', swig.renderFile);
     app.set('views', path.join(__dirname, '../app/views'));

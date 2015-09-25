@@ -6,35 +6,14 @@
 
 'use strict';
 
-//let React = require('react/addons');
-//
-//const Signup = React.createClass({
-//    render() {
-//        return (
-//        )
-//    }
-//});
-//
-//module.exports = Signup;
+let React = require('react/addons');
 
-
-
-var React = require('react/addons');
-
-
-var Signup = React.createClass({
-
-      componentDidMount: function () {
-      },
-
-      render: function () {
+const Signup = React.createClass({
+    render() {
         return (
-          <div id="table-area">
-            test
-          </div>
+            <div>test</div>
         )
-      }
-  });
+    }
+});
 
-/* Module.exports instead of normal dom mounting */
 module.exports = Signup;
