@@ -14,8 +14,8 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let favicon = require('serve-favicon');
-let swig = require('swig');
 let compression = require('compression');
+let exphbs = require('express-handlebars');
 
 let pkg = require('../package.json');
 
@@ -36,9 +36,10 @@ module.exports = (app) => {
     app.use(express.static(path.join(__dirname, '../app/public')));
 
     // Set views path, template engine and default layout
-    app.engine('html', swig.renderFile);
+    app.engine('hbs', exphbs({defaultLayout: `${__dirname}/../app/views/layouts/mobile.hbs`, extname: 'hbs'}));
     app.set('views', path.join(__dirname, '../app/views'));
-    app.set('view engine', 'html');
+    app.set('view engine', 'hbs');
+    
 
     // Expose package.json to views
     app.use((req, res, next) => {
