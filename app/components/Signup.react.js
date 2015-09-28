@@ -11,7 +11,10 @@ let React = require('react/addons');
 const Signup = React.createClass({
     render() {
         return (
-            <div>test</div>
+            <section>
+                <input placeholder="手机号" />
+                <input type="password" placeholder="密码" />
+            </section>
         )
     }
 });
