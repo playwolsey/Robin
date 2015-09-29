@@ -3,19 +3,21 @@
 /**
  * Module dependencies
  */
-//import express from 'express'; // node4.1.0 not support es6 module
-let express = require('express');
-let app = express();
-let http = require('http').Server(app);
+import express from 'express';
+import http from 'http';
 
-require('./config/express')(app);
-require('./config/routes')(app);
+import conf_express from './config/express';
+import conf_routes from './config/routes';
+
+let app = express();
+
+conf_express(app);
+conf_routes(app);
 
 app.set('port', process.env.PORT || 1999);
 
-let server = http.listen(app.get('port'), () => {
+let server = http.Server(app).listen(app.get('port'), () => {
     console.log(`Robin server is listening on port ${server.address().port}`);
 });
 
-//export default app;
-module.exports = app;
+export default app;
