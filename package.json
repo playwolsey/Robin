@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon --exec app.js"
+    "start": "./node_modules/.bin/babel-node app.js"
   },
   "engines": {
     "node": "4.1.0",
@@ -22,12 +22,16 @@
   "dependencies": {
     "babel": "^5.8.21",
     "body-parser": "^1.14.0",
+    "browser-sync": "^2.9.6",
     "compression": "^1.5.2",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "favicon": "0.0.2",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-uglify": "^1.4.1",
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
     "serve-favicon": "^2.3.0"
