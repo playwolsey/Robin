@@ -9,8 +9,8 @@
 /**
  * Module dependencies
  */
-let index = require('../app/controllers/index');
-let accounts = require('../app/controllers/accounts');
+import index from '../app/controllers/index';
+import accounts from '../app/controllers/accounts';
 
 module.exports = (app) => {
     app.get('/', index.index);

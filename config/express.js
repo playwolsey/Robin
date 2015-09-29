@@ -9,15 +9,15 @@
 /**
  * Module dependencies
  */
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
-let favicon = require('serve-favicon');
-let compression = require('compression');
-let exphbs = require('express-handlebars');
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
+import compression from 'compression';
+import exphbs from 'express-handlebars';
 
-let pkg = require('../package.json');
+import pkg from '../package.json';
 
 
 /**
