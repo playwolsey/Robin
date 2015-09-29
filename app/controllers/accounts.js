@@ -8,11 +8,13 @@
 
 require('node-jsx').install();
 
-let React = require('react/addons');
-let Signup = React.createFactory(require('../components/Signup.react'));
+import React from 'react/addons';
+import Signup from '../components/Signup.react';
+
+let signup = React.createFactory(Signup);
 
 exports.signup = (req, res) => {
-    let markup = React.renderToString(Signup({}));
+    let markup = React.renderToString(signup({}));
 
     res.render('accounts/signup', {
         title: 'signup',

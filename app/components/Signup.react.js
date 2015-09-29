@@ -6,7 +6,8 @@
 
 'use strict';
 
-let React = require('react/addons');
+import React from 'react/addons';
+import Button from './common/Button.react';
 
 const Signup = React.createClass({
     render() {
@@ -14,9 +15,10 @@ const Signup = React.createClass({
             <section>
                 <input placeholder="手机号" />
                 <input type="password" placeholder="密码" />
+                <Button>登录</Button>
             </section>
         )
     }
 });
 
-module.exports = Signup;
+export default Signup;
