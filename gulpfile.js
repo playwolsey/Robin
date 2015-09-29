@@ -6,11 +6,11 @@
 
 'use strict';
 
-let gulp = require('gulp');
-let uglify = require('gulp-uglify');
-let concat = require('gulp-concat');
-let nodemon = require('gulp-nodemon');
-let browserSync = require('browser-sync').create();
+const gulp = require('gulp');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const nodemon = require('gulp-nodemon');
+const browserSync = require('browser-sync').create();
 
 gulp.task('run', (cb) => {
     let started = false;
