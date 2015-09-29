@@ -1,7 +1,7 @@
 /**
- * @desc express config
+ * @desc gulp config
  * @author awwwesssooooome <chengpengcp9@gmail.com>
- * @date 2015-09-21
+ * @date 2015-09-29
  */
 
 'use strict';
@@ -19,7 +19,8 @@ gulp.task('run', (cb) => {
         execMap: {
           js: 'node'
         },
-        script: 'app.js'
+        script: 'app.js',
+        exec: 'npm start'
     })
     .on('start', () => {
         if (!started) {
