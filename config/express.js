@@ -10,7 +10,6 @@
  * Module dependencies
  */
 import express from 'express';
-import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import favicon from 'serve-favicon';
@@ -30,14 +29,14 @@ module.exports = (app) => {
     }));
 
     // Set favicon
-    app.use(favicon(`${__dirname}/../app/public/favicon.ico`));
+    app.use(favicon(`${__dirname}/../public/favicon.ico`));
 
     // Static files middleware
-    app.use(express.static(path.join(__dirname, '../app/public')));
+    app.use(express.static(`${__dirname}/../public`));
 
     // Set views path, template engine and default layout
     app.engine('hbs', exphbs({defaultLayout: `${__dirname}/../app/views/layouts/mobile.hbs`, extname: 'hbs'}));
-    app.set('views', path.join(__dirname, '../app/views'));
+    app.set('views', `${__dirname}/../app/views`);
     app.set('view engine', 'hbs');
     
 
