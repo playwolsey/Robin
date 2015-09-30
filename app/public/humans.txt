@@ -1,0 +1,19 @@
+/* TEAM */
+    Founder & Developer: Peng Cheng
+    Contact: chengpengcp9 [at] gmail.com
+    From: HangZhou, ZheJiang, China
+    Degree: Master
+
+/* THANKS */
+    humans.txt Founder: Peng Cheng
+    Site: http://no.no.no
+
+/* SITE */
+    Last update: 2013/01/23
+    Language: Chinese
+    Doctype: HTML5
+    Standards: HTML5, CSS3
+    Components: React
+    Core: Node.js
+    Deployment: Linux, Git
+    IDE: gVim
