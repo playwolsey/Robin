@@ -12,7 +12,7 @@ import Button from './common/Button.react';
 const Signup = React.createClass({
     render() {
         return (
-            <section>
+            <section className="signup">
                 <input placeholder="手机号" />
                 <input type="password" placeholder="密码" />
                 <Button>登录</Button>
