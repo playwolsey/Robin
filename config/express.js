@@ -15,6 +15,7 @@ import bodyParser from 'body-parser';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import exphbs from 'express-handlebars';
+import swig from 'swig'; 
 
 import pkg from '../package.json';
 
@@ -35,9 +36,17 @@ module.exports = (app) => {
     app.use(express.static(`${__dirname}/../public`));
 
     // Set views path, template engine and default layout
-    app.engine('hbs', exphbs({defaultLayout: `${__dirname}/../app/views/layouts/mobile.hbs`, extname: 'hbs'}));
+    //app.engine('hbs', exphbs({defaultLayout: `${__dirname}/../app/views/layouts/mobile.hbs`, extname: 'hbs'}));
+    //app.set('views', `${__dirname}/../app/views`);
+    //app.set('view engine', 'hbs');
+
+    app.engine('html', swig.renderFile); 
     app.set('views', `${__dirname}/../app/views`);
-    app.set('view engine', 'hbs');
+    app.set('view engine', 'html'); 
+
+    // For development
+    app.set('view cache', false);
+    swig.setDefaults({ cache: false });
     
 
     // Expose package.json to views

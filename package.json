@@ -27,7 +27,6 @@
     "compression": "^1.5.2",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
     "favicon": "0.0.2",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-cssmin": "^0.1.7",
@@ -35,7 +34,8 @@
     "gulp-plumber": "^1.0.1",
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
