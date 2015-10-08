@@ -18,9 +18,9 @@ const FormGroup = React.createClass({
     render() {
         let classSet = {};
 
-        classSet.form-group = true;
+        classSet['form-group'] = true;
         this.props.validation && (classSet['form-' + this.props.validation] = true);
-        classSet.form-feedback = this.props.hasFeedback;
+        classSet['form-feedback'] = this.props.hasFeedback;
 
         return (
             <div className={classNames(classSet, this.props.className)}>
