@@ -36,10 +36,6 @@ module.exports = (app) => {
     app.use(express.static(`${__dirname}/../public`));
 
     // Set views path, template engine and default layout
-    //app.engine('hbs', exphbs({defaultLayout: `${__dirname}/../app/views/layouts/mobile.hbs`, extname: 'hbs'}));
-    //app.set('views', `${__dirname}/../app/views`);
-    //app.set('view engine', 'hbs');
-
     app.engine('html', swig.renderFile); 
     app.set('views', `${__dirname}/../app/views`);
     app.set('view engine', 'html'); 
