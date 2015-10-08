@@ -7,14 +7,15 @@
 'use strict';
 
 import React from 'react/addons';
+import Input from './common/Input.react';
 import Button from './common/Button.react';
 
 const Signup = React.createClass({
     render() {
         return (
             <section className="signup">
-                <input placeholder="手机号" />
-                <input type="password" placeholder="密码" />
+                <Input placeholder="手机号" />
+                <Input type="password" placeholder="密码" />
                 <Button>登录</Button>
             </section>
         )
