@@ -7,9 +7,10 @@
 'use strict';
 
 import React from 'react/addons';
+import classNames from 'classnames';
 
-import FormGroup from './FormGroup';
-import Button from './Button';
+import FormGroup from './FormGroup.react';
+import Button from './Button.react';
 
 const Input = React.createClass({
     propTypes: {
@@ -28,6 +29,14 @@ const Input = React.createClass({
         }
     },
 
+    isCheckboxOrRadio() {
+        return this.props.type === 'radio' || this.props.type === 'checkbox';
+    },
+
+    isFile: function() {
+        return this.props.type === 'file';
+    },
+
     renderLabel(children) {
         let classSet = {};
 
@@ -39,13 +48,43 @@ const Input = React.createClass({
 
         return this.props.label ? (
             <label htmlFor={this.props.id} className={classNames(this.props.labelClassName, classSet)} key="label">
-                {children}
-                {this.props.label}
+            {children}
+            {this.props.label}
             </label>
         ) : children;
     },
 
     renderInput() {
+        let input = null;
+        let fieldClassName = (this.isCheckboxOrRadio() || this.isFile()) ? '' : 'form-field';
+        let classes = classNames(this.props.className, fieldClassName);
+
+        switch (this.props.type) {
+            case 'select':
+                input = (
+                    <select {...this.props} className={classes} ref="field" key="field">
+                        {this.props.children}
+                    </select>
+                );
+            break;
+            case 'textarea':
+                input = (
+                    <textarea {...this.props} className={classes} ref="field" key="field"/>
+                );
+            break;
+            case 'submit':
+                case 'reset':
+                input = (
+                    <Button {...this.props} componentTag="input" ref="field" key="field"/>
+                );
+            break;
+            default:
+                input = (
+                    <input {...this.props} className={classes} ref="field" key="field"/>
+                );
+        }
+
+        return input;
     },
 
     render() {
@@ -56,10 +95,10 @@ const Input = React.createClass({
 
         return (
             <FormGroup className={groupClassName} validation={this.props.validation} hasFeedback={this.props.hasFeedback}>
-                {[
-                    this.renderLabel(),
-                    this.renderInput()
-                ]}
+            {[
+                this.renderLabel(),
+                this.renderInput()
+            ]}
             </FormGroup>
         );
     }
