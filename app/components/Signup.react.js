@@ -16,6 +16,7 @@ const Signup = React.createClass({
                 <input placeholder="手机号" />
                 <input type="password" placeholder="密码" />
                 <Button>登录</Button>
+                div.test
             </section>
         )
     }
