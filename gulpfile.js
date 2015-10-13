@@ -12,9 +12,15 @@ const concat = require('gulp-concat');
 const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const autoprefixer = require('gulp-autoprefixer');
+const rename = require('gulp-rename');
+const jshint = require('gulp-jshint');
 const plumber = require('gulp-plumber');
 const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync').create();
+const babelify = require('babelify');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const streamify = require('gulp-streamify');
 
 
 gulp.task('less', () => {
@@ -23,7 +29,25 @@ gulp.task('less', () => {
         .pipe(less())
         .pipe(autoprefixer())
         .pipe(cssmin())
-        .pipe(gulp.dest('public/assets/css'))
+        .pipe(gulp.dest('public/assets/css'));
+});
+
+gulp.task('scripts', () => {
+    //return gulp.src(['app/client/javascript/**/*.js', '!app/client/javascript/**/{tests,test}.js'])
+    //    .pipe(uglify())
+    //    .pipe(jshint('.jshintrc'))
+    //    .pipe(jshint.reporter('default'))
+    //    .pipe(concat('test.js'))
+    //    .pipe(rename({suffix: '.min'}))
+    //    .pipe(gulp.dest('public/assets/js'));
+
+    return browserify('app/client/javascript/main.js')
+        .transform(babelify)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(streamify(uglify({ mangle: false })))
+        .pipe(gulp.dest('public/assets/js'));
 });
 
 gulp.task('watch', () => {
