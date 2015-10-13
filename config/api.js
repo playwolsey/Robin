@@ -12,7 +12,7 @@
 import index from '../app/controllers/index';
 import accounts from '../app/controllers/accounts';
 
-module.exports = (app) => {
+export default ((app) => {
     //app.get('/', index.index);
     app.get('/signup', accounts.signup);
-};
+});
