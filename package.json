@@ -21,17 +21,22 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.21",
+    "babelify": "^6.3.0",
     "body-parser": "^1.14.0",
     "browser-sync": "^2.9.6",
+    "browserify": "^11.2.0",
     "classnames": "^2.1.4",
     "compression": "^1.5.2",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
     "favicon": "0.0.2",
+    "gulp-streamify": "^1.0.2",
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
+    "react-router": "^0.13.4",
     "serve-favicon": "^2.3.0",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
