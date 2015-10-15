@@ -7,6 +7,8 @@
 'use strict';
 
 const gulp = require('gulp');
+const gutil = require('gulp-util');
+const gulpif = require('gulp-if');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const less = require('gulp-less');
@@ -19,8 +21,15 @@ const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync').create();
 const babelify = require('babelify');
 const browserify = require('browserify');
+const watchify = require('watchify');
 const source = require('vinyl-source-stream');
 const streamify = require('gulp-streamify');
+
+const production = process.env.NODE_ENV === 'production';
+const dependencies = [
+    'react',
+    'react-router'
+];
 
 
 gulp.task('less', () => {
@@ -32,33 +41,53 @@ gulp.task('less', () => {
         .pipe(gulp.dest('public/assets/css'));
 });
 
-gulp.task('scripts', () => {
-    //return gulp.src(['app/client/javascript/**/*.js', '!app/client/javascript/**/{tests,test}.js'])
-    //    .pipe(uglify())
-    //    .pipe(jshint('.jshintrc'))
-    //    .pipe(jshint.reporter('default'))
-    //    .pipe(concat('test.js'))
-    //    .pipe(rename({suffix: '.min'}))
-    //    .pipe(gulp.dest('public/assets/js'));
+gulp.task('less-watch', () => {
+    gulp.watch('app/client/less/**/*.less', ['less']);
+});
 
-    return browserify('app/client/javascript/main.js')
-        .transform(babelify)
+gulp.task('vendors', () => {
+    return browserify()
+        .require(dependencies)
         .bundle()
-        .pipe(source('bundle.js'))
+        .pipe(source('vendors.js'))
         .pipe(rename({suffix: '.min'}))
-        .pipe(streamify(uglify({ mangle: false })))
+        .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
         .pipe(gulp.dest('public/assets/js'));
 });
 
-gulp.task('watch', () => {
-    gulp.watch('app/client/less/**/*.less', ['less']);
-    //gulp.watch('public/javascripts/**/*.js', ['build']);
-    //gulp.watch('public/css/**/*.less', ['build']);
-    //gulp.watch('components/**/*.jsx', ['build']);
-    //gulp.watch('components/**/*.less', ['build']);
+gulp.task('scripts', () => {
+    return browserify('app/client/javascript/main.js')
+        .transform(babelify)
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
+        .pipe(gulp.dest('public/assets/js'));
 });
 
-gulp.task('run', ['watch'], (cb) => {
+gulp.task('scripts-watch', ['vendors'], function() {
+    let bundler = watchify(browserify('app/client/javascript/main.js', watchify.args));
+    bundler.external(dependencies);
+    bundler.transform(babelify);
+    bundler.on('update', rebundle);
+    return rebundle();
+
+    function rebundle() {
+        let start = Date.now();
+        return bundler.bundle()
+        .on('error', (err) => {
+            gutil.log(gutil.colors.red(err.toString()));
+        })
+        .on('end', () => {
+            gutil.log(gutil.colors.green('Finished rebundling in', (Date.now() - start) + 'ms.'));
+        })
+        .pipe(source('main.js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('public/assets/js/'));
+    }
+});
+
+gulp.task('run', ['less-watch', 'scripts-watch'], (cb) => {
     let started = false;
 
     nodemon({
@@ -70,7 +99,7 @@ gulp.task('run', ['watch'], (cb) => {
     })
     .on('start', () => {
         if (!started) {
-			cb();
+            cb();
             started = true; 
         } 
     })
@@ -84,15 +113,16 @@ gulp.task('run', ['watch'], (cb) => {
 });
 
 gulp.task('browser-sync', ['run'], () => {
-	browserSync.init(null, {
-		proxy: 'http://10.240.129.0:1999',
+    browserSync.init(null, {
+        proxy: 'http://10.240.129.0:1999',
         files: [
-            'app/public/**/*.*',
+            'app/client/**/*.*',
             'app/components/**/*.*'
         ],
         browser: ['google chrome'],
         port: 7000,
-	});
+    });
 });
 
 gulp.task('default', ['browser-sync']);
+gulp.task('build', ['less', 'vendors', 'scripts']);
