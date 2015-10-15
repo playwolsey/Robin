@@ -14,7 +14,6 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import favicon from 'serve-favicon';
 import compression from 'compression';
-import exphbs from 'express-handlebars';
 import swig from 'swig'; 
 
 import pkg from '../package.json';
