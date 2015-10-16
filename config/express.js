@@ -22,7 +22,7 @@ import pkg from '../package.json';
 /**
  * Expose
  */
-module.exports = (app) => {
+export default ((app) => {
     // Compression middleware (should be placed before express.static)
     app.use(compression({
         threshold: 512
@@ -58,4 +58,4 @@ module.exports = (app) => {
     // CookieParser should be above session
     app.use(cookieParser());
     //app.use(cookieSession({ secret: 'secret' }));
-};
+});
