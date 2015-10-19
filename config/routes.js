@@ -10,7 +10,7 @@
  * Module dependencies
  */
 import React from 'react';
-import Router, {Route} from 'react-router';
+import Router, { Route } from 'react-router';
 import swig from 'swig'; 
 import App from '../app/components/App.react';
 import Index from '../app/components/Index.react';
