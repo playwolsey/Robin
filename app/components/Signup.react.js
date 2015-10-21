@@ -6,20 +6,24 @@
 
 'use strict';
 
-import React from 'react/addons';
+import React, { Component } from 'react/addons';
 import Input from './common/Input.react';
 import Button from './common/Button.react';
 
-const Signup = React.createClass({
+class Signup extends Component {
+    handleClick() {
+        alert('test');
+    }
+
     render() {
         return (
             <section className="signup">
                 <Input placeholder="手机号" />
                 <Input type="password" placeholder="密码" />
-                <Button>登录</Button>
+                <Button onClick={this.handleClick}>登录</Button>
             </section>
         )
     }
-});
+};
 
 export default Signup;
